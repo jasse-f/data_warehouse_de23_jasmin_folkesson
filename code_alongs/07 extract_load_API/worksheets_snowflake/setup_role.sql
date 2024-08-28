@@ -1,8 +1,7 @@
 USE ROLE USERADMIN;
 
 CREATE ROLE IF NOT EXISTS job_ads_dlt_role;
--- design: one user for EL and several roles for 
--- loading to several databases
+
 
 
 USE ROLE SECURITYADMIN;
@@ -30,4 +29,4 @@ SHOW GRANTS TO ROLE job_ads_dlt_role;
 
 SHOW GRANTS TO USER extract_loader;
 
-GRANT ROLE job_ads_dlt_role TO USER kokchun;
+GRANT ROLE job_ads_dlt_role TO USER jassef;

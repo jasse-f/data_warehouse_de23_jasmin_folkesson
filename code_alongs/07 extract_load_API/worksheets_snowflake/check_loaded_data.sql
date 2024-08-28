@@ -1,0 +1,15 @@
+USE ROLE job_ads_dlt_role;
+
+use database job_ads;
+
+SHOW SCHEMAS;
+
+SHOW TABLES IN SCHEMA STAGING;
+
+DESC TABLE STAGING.DATA_FIELD_JOB_ADS;
+
+USE WAREHOUSE DEV_WH;
+
+SELECT headline, employer__name, employer__workplace 
+FROM STAGING.DATA_FIELD_JOB_ADS;
+SELECT * FROM STAGING.DATA_FIELD_JOB_ADS;
