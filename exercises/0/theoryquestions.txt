@@ -1,0 +1,76 @@
+These study questions are good to get an overview of how snowflake works.
+
+  a) What are the main components of Snowflake's architecture?
+Database Storage, Query Processing, Cloud services
+
+  b) Explain the role of the storage layer in Snowflake.
+When data is loaded into snowflake it is automatically loaded in a specific way into Snowflake's storage layer.
+It is organized, optimised, compressed, file formatted, encrypted etc.
+The storage layer hosts data, tables, queries, metadata, indices, etc.
+It is S3, Blob, Cloud Storage.
+
+  c) What is the purpose of the compute layer in Snowflake?
+This is where your quieres are actually being executed, it is the virtual warehouse. 
+There is no permanent storage. It is a cluster of CPU, memory, and disk. 
+
+
+  d) How does the cloud services layer enhance the functionality of Snowflake?
+Where all the intelligent functions happen, the "brain" of snowflake.
+It authenticates users, manages the cluster, optimized query execution, encrypts and orchestrates.
+Runs on compute nodes that are stateless and spans the entire datacenter.
+They manage metadata and security as well.
+It helps with the automatic scaling for example.
+
+
+  e) What is a virtual warehouse in Snowflake, and how does it differ from a traditional data warehouse?
+they can be stopped and started at any time, and quereies can be started and stopped at any time.
+You can also increase or decrease the computing capacity AT WILL, so if you are running a large query
+and it is taking too long you can scale it up temporarily and then scale it down again.
+Auto-suspend suspends queries after a certain time. Auto resume ? idk.
+
+A virtual warehouse in snowflake is a cluster of copmpute resources working against the data stored in 
+Snowflake cloud servies to execute queries.
+
+The difference between a virtual warehouse and a physical one is that in a virtual warehouse, computation
+and storage are handled separately. The data is in the cloud layer and the computing happens
+in the virtual warehouse/computing layer.
+In a physical warehouse this is all handled by the same static and combined entity.
+
+In a virtual warehouse, resoures can be allocated on demand and can be suspended or resumed automatically.
+Physical warehouses have an upfront cost of for example hardware. Virtual warehouses 
+have a pay as you go situation.
+
+
+
+  f) When are the cases you would want to scale up versus scaling out in terms of virtual warehouses and compute resources.
+Scaling up is appropriate when you want to handle larger amounts of data but in  few calculations.
+You get more computing power but they can not handle many parallel queries.
+In this case you purchase a larger warehouse.
+
+Scaling out is for when you want to run several, smaller parallell processes simultaneously.
+In this case you purchase more clusters.
+
+
+  g) How does Snowflake's pricing model differ from traditional on-premise data warehousing solutions?
+It is pay-as-you-go, you only pay for the storage and computing you are actually using and
+you can scale this as both aspects are flexible. There is no/low upfront cost.
+On-prem on the contrary often has an upfront hardware cost and is not typically flexibally scalable.
+
+
+  h) What is the difference between pay-as-you-go and upfront storage, and when you should you choose one over the other?
+It is described above. I would use pay-as-you-go if my data needs are wildly varying during different
+times, and up-front if I already know about how much I would be using. If I have a predictable usage,
+with a lot of virtual machines running all the time, there could be savings in discounts in upfront
+storage. You also have a guaranteed capacity in case of a storage supply problem,
+ which might not be the case in a pay-as-you-go-solution.
+
+
+  i) Explain the concept of Time Travel and Fail-safe in Snowflake and its use cases
+  They are data protection features.
+
+  Time-travel involves the ability to yourself activate a saved version of your dataset and recover it
+  from a specific time in the past. 
+Failsafe is the same concept but involves contacting snowflake support for the recovery
+of your data. The support team, if they can help you, will provide you with a script for
+recovering your lost data. Failsafe covers more of the past, so if you have to recover data
+that you can't time-travel back to, failsafe is your only option.
