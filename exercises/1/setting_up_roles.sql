@@ -1,0 +1,133 @@
+In the lecture setup_dlt we setup a reader and writer role and also an analyst role for the 
+database movies. 
+However we never granted any privileges to that role. 
+It needs the following privileges to do its work:
+
+read data from tables and views in public schema
+use dev_wh
+create views
+create tables
+create temporary tables
+Check that it has the correct grants and future grants. 
+Now assign this role to your user, and do some manual testing to see that it works.;
+
+-- movies reader, reading datat from tables in the netflix table in the movies database, and being able
+-- to use dev_wh
+USE ROLE ACCOUNTADMIN;
+USE ROLE SECURITYADMIN;
+
+USE WAREHOUSE DEV_WH;
+
+SHOW WAREHOUSES;
+
+SHOW ACCOUNTS;
+
+USE ROLE USERADMIN;
+SHOW USERS;
+
+SHOW ROLES;
+
+GRANT USAGE ON WAREHOUSE DEV_WH TO Movies_reader;
+
+USE DATABASE MOVIES;
+GRANT USAGE ON DATABASE MOVIES TO MOVIES_READER;
+
+GRANT USAGE ON SCHEMA STAGING TO MOVIES_READER;
+
+GRANT USAGE ON FUTURE SCHEMAS IN Database Movies TO Movies_reader;
+
+SHOW GRANTS TO ROLE MOVIES_READER;
+
+GRANT SELECT ON ALL TABLES IN DATABASE movies TO ROLE Movies_reader;
+
+GRANT SELECT ON FUTURE TABLES IN DATABASE movies TO ROLE Movies_reader;
+GRANT SELECT ON ALL VIEWS IN SCHEMA STAGING TO ROLE MOVIES_READER;
+GRANT SELECT ON FUTURE VIEWS IN SCHEMA STAGING TO ROLE MOVIES_READER;
+
+SHOW DATABASES;
+
+USE ROLE MOVIES_READER;
+
+SHOW DATABASES;
+
+SHOW SCHEMAS IN MOVIES;
+
+SHOW TABLES IN SCHEMA MOVIES.STAGING;
+
+USE SCHEMA MOVIES.STAGING;
+
+SHOW TABLES IN SCHEMA STAGING;
+
+DESC TABLE NETFLIX;
+
+SELECT * FROM NETFLIX LIMIT 1;
+
+SELECT TITLE FROM NETFLIX LIMIT 10;
+
+
+--granting create views, tables and temporary tables to movies_writer
+--creating the role movies_writer
+
+USE ROLE USERADMIN;
+
+CREATE ROLE Movies_writer;
+
+GRANT USAGE ON WAREHOUSE DEV_WH TO ROLE Movies_writer;
+
+GRANT USAGE ON DATABASE Movies to Role movies_writer;
+
+GRANT USAGE ON ALL SCHEMAS IN DATABASE Movies TO ROLE Movies_writer;
+
+GRANT USAGE ON FUTURE SCHEMAS IN DATABASE Movies TO ROLE Movies_writer;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA STAGING TO ROLE MOVIES_WRITER;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA STAGING TO ROLE MOVIES_WRITER;
+
+GRANT SELECT ON ALL VIEWS IN SCHEMA STAGING TO ROLE MOVIES_WRITER;
+GRANT SELECT ON FUTURE VIEWS IN SCHEMA STAGING TO ROLE MOVIES_WRITER;
+
+
+GRANT ROLE movies_writer to user jassef;
+
+Use ROLE movies_writer;
+
+SHOW Grants to role movies_writer;
+
+GRANT INSERT, UPDATE, DELETE ON ALL TABLES IN DATABASE Movies TO ROLE movies_writer;
+
+GRANT INSERT, UPDATE, DELETE ON FUTURE TABLES IN DATABASE Movies TO ROLE movies_writer;
+
+USE DATABASE Movies;
+GRANT CREATE TABLE ON SCHEMA STAGING TO ROLE MOVIES_WRITER;
+GRANT CREATE VIEW ON SCHEMA STAGING TO ROLE MOVIES_WRITER;
+
+USE ROLE movies_writer;
+
+SHOW DATABASES;
+
+USE DATABASE MOVIES;
+
+SHOW SCHEMAS;
+SHOW TABLES IN STAGING;
+
+USE SCHEMA STAGING;
+CREATE TABLE Test_table(
+    test_id INTEGER AUTOINCREMENT PRIMARY KEY
+);
+
+CREATE TEMPORARY TABLE temp_table_test (
+    test_id INTEGER PRIMARY KEY
+);
+
+
+
+CREATE VIEW netflix_just_1 AS
+SELECT * FROM NETFLIX 
+LIMIT 1;
+
+
+SELECT * FROM NETFLIX_JUST_1;
+
+
+
+

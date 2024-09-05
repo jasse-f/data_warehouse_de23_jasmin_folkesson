@@ -1,0 +1,49 @@
+These study questions are good to get an overview of snowflake roles and dlt for extracting and loading data.
+
+  a) Why is the principal of least privilege important in a company?
+  It means that nobody who doesn't need acccess to a certain privliege, also doesn't receive that privilege, and that no one is granted
+  more privilege than they actually need. This is important because it adds to the security of the company's data, preventing accidental or malicious damage, 
+  unnecessary exposure and
+  ensuring unauthorized users can not access the data for reading or manipulating.
+
+  b) Explain the role of dlt in managing data pipelines.
+  The dlt library helps to take extracted data and load it into a warehouse/database, for staging or for final storage.
+  It can extract data from several different sources, transform it as needed, and load it into a target warehouse while tracking metadata to ensure reliable and efficient
+  data processing. A lot of the process is automated, which makes the tool especially easy to use.
+
+  c) What is a data connector and why is it important in data integration?
+  A data connector is a tool that allows you to load your data from many sources into one target destination.
+  It is useful to make sure all your data ends up in the same place, at the right time.
+  They streamline the process of collecting and aggregating data from various systems,
+  and puts it in a centralized location. They provide a seamless flow of data between systems.
+  Dlt is an example of a data connector.
+
+  d) What is the difference between data extraction and data loading?
+  Data extraction is taking all or some data from various sources, while loading is dumping that data into a centralized destination for storage or further processing.
+
+
+  e) What is ELT and how does it differ from ETL?
+ELT is extract-load-transfer and ETL is extract-transfer-load. It describes a data pipeline, they are both very similar with the key difference that in the first method,
+the data is loaded into a centralized storage before transformation (i.e., data cleaning, data standardization, etc) starts, while in ETL, the transformation happens
+before the data is loaded into storage. ELT leverages the processing power of the target system while ETL ensures high-quality data.
+
+  f) Discuss the advantages of performing data transformations after loading the data.
+  Data transformations after loading the data allows us to see the data before we transform with potential information loss. It can also be beneficial to load the data first
+  because if something goes wrong either in the transformation or in further steps, then we have raw, untransformed data to revert back to. In a modern cloud-based data system,
+  you can leverage the power of the target system for effective transformation. You also have the option to transform your data in iterations, which might save time and money
+  in the long run.
+
+  g) What is the purpose of roles in Snowflake?
+Roles are clusters of assigned privileges. These roles can then later be assigned to users for easy access granting to different privileges.
+Rather than individually granting every single privilege needed for a user to do their job, the user can be granted a role and be given all the necessary privileges at once.
+It also provides an easy overview of which privlieges belong to which user.
+Roles increase the security of your warehouse and data by ensuring the principle of least privilege and a clear audit trail, and also make creating new users easier,
+simplyfing the management of user access.
+
+  h) Explain the difference between USAGE and OWNERSHIP privileges.
+Usage privileges on an object only allow reading and accessing an object, witho.ut altering it
+while ownership allows reading, modifying, creating, deleting, and is the highest privilege. It allows full control over the object.
+
+  i) What information is required to create a user in Snowflake?
+Only username, password, and default_warehouse (which apparently is optional...). You can also asssign a initial set of privileges the user will have when logging in.
+You can also specify default_namespace, which specifies the default database and schema the user will search in.

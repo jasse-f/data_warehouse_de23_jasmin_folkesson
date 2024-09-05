@@ -1,0 +1,15 @@
+USE ROLE marketing_dlt_role;
+
+USE DATABASE ifood;
+
+SHOW SCHEMAS;
+
+SHOW TABLES;
+
+USE SCHEMA STAGING;
+
+DESC TABLE i_food;
+
+SELECT * FROM i_Food LIMIT 3;
+
+SELECT COUNT(*) FROM i_food;
