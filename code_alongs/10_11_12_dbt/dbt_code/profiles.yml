@@ -1,0 +1,34 @@
+
+dbt_code:
+  outputs:
+    dev:
+      type: snowflake
+      account: xs66603.west-europe.azure"
+      user: jassef
+      password: 74w&vY3jzkqN9jj4
+      role: T_E_DBT_ROLE
+      warehouse: DEV_WH
+      database: ENGINEER_ADS
+      schema: WAREHOUSE
+      threads: 1
+      client_session_keep_alive: False
+
+dbt_code_along:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: xs66603.west-europe.azure
+      user: jassef
+      password: 74w&vY3jzkqN9jj4
+      role: JOB_ADS_DBT_ROLE
+      warehouse: DEV_WH
+      database: JOB_ADS
+      schema: WAREHOUSE
+      threads: 1
+      client_session_keep_alive: False
+
+
+
+
+
